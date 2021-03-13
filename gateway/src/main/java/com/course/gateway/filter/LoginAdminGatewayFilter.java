@@ -34,10 +34,13 @@ public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
         }
         if (path.contains("/system/admin/user/login")
                 || path.contains("/system/admin/user/logout")
-                || path.contains("/system/admin/kaptcha")) {
+                || path.contains("/system/admin/kaptcha")
+                || path.contains("/file/admin/check")
+                || path.contains("/business/admin/upload/save")
+                || path.contains("/file/admin/oss-append")) {
             LOG.info("不需要控台登录验证：{}", path);
             return chain.filter(exchange);
-        }
+    }
         //获取header的token参数
         String token = exchange.getRequest().getHeaders().getFirst("token");
         LOG.info("控台登录验证开始，token：{}", token);

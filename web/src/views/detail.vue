@@ -36,6 +36,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#chapter" data-toggle="tab">章节目录</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#comment" data-toggle="tab">课程评价</a>
+              </li>
             </ul>
 
             <br>
@@ -71,6 +74,10 @@
                     </table>
                   </div>
                 </div>
+              </div>
+              <!--评论信息-->
+              <div class="tab-pane" id="comment">
+                暂时没有评论
               </div>
             </div>
 
@@ -116,7 +123,7 @@
     },
     mounted() {
       let _this = this;
-      _this.id = _this.$route.query.id;
+      _this.id = _this.$route.query.id; //课程id
       _this.findCourse();
     },
     methods: {

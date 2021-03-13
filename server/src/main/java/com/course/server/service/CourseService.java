@@ -168,6 +168,33 @@ public class CourseService {
     }
 
     /**
+     * 搜索框逻辑代码
+     * @param
+     * @return
+     */
+    public String findCourses(String searchName) {
+        CourseExample courseExample = new CourseExample();
+        courseExample.createCriteria().andNameLike("%"+searchName+"%");
+        String id = "";
+        List<Course> courses = courseMapper.selectByExample(courseExample);
+        if (courses.size()>0) {
+            id = courses.get(0).getId();
+
+
+        }
+        return id;
+        /*List<Integer> courseIdList = new arrayList();
+        if (courseList.size()>0) {
+            for (Course c:courseList) {
+                courseIdList.add(Integer.valueOf(c.getId().toString()));
+            }
+        }
+        return courseIdList;*/
+
+    }
+
+
+    /**
      * 查找某一课程，供web模块用，只能查已发布的
      * @param id
      * @return

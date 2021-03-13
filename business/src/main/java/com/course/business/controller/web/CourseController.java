@@ -58,4 +58,14 @@ public class CourseController {
         LOG.info("查找课程结束：{}", responseDto);
         return responseDto;
     }
+
+    @GetMapping("/finds")
+    public ResponseDto findCourses(String searchName) {
+        LOG.info("查找课程开始：{}", searchName);
+        ResponseDto responseDto = new ResponseDto();
+        String courseIds = courseService.findCourses(searchName);
+        responseDto.setContent(courseIds);
+        LOG.info("查找课程结束：{}", responseDto);
+        return responseDto;
+    }
 }
