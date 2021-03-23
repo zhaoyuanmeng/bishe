@@ -32,6 +32,7 @@ public class UploadController {
 
     @Value("${file.domain}")
     private String FILE_DOMAIN;
+//
 
     @Value("${file.path}")
     private String FILE_PATH;

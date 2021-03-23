@@ -124,6 +124,7 @@
             } else if (obj.shardIndex === obj.shardTotal) {
               // 已上传分片 = 分片总数，说明已全部上传完，不需要再上传
               Toast.success("文件极速秒传成功！");
+//                _this.upload(param);
               _this.afterUpload(resp);
               $("#" + _this.inputId + "-input").val("");
             }  else {

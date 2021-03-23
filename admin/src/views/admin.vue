@@ -472,6 +472,14 @@
 
                 <b class="arrow"></b>
               </li>
+              <li v-show="hasResource('0302')" class="" id="file-anlyse-sidebar">
+                <router-link to="/file/anlyse">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  文件分析
+                </router-link>
+
+                <b class="arrow"></b>
+              </li>
 
             </ul>
           </li>
@@ -501,8 +509,8 @@
         <div class="footer-inner">
           <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">甲蛙</span>
-							在线视频课程 &copy; 2099-2099
+							<span class="blue bolder">来学吧</span>
+							在线网校平台 &copy; 2021-2021
 						</span>
 
             &nbsp; &nbsp;

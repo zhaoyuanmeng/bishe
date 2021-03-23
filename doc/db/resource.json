@@ -73,5 +73,11 @@
         "children": [
             {"id": "030101", "name": "文件管理", "request": ["/file/admin/file"]}
         ]
-    }]
+    },{
+        "id": "0302", "name": "文件分析", "page": "file/anlyse",
+        "children": [
+            {"id": "030201", "name": "文件分析", "request": ["/file/admin/file"]}
+        ]
+    }
+    ]
 }]

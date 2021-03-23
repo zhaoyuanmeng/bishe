@@ -20,6 +20,9 @@
             <li class="nav-item active">
               <router-link class="nav-link" to="/upload">留言反馈</router-link>
             </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/member">个人中心</router-link>
+            </li>
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 更多
@@ -90,7 +93,7 @@
     data: function () {
       return {
         loginMember: {},
-          searchName:'',
+          searchName:' ',
       }
     },
     mounted() {

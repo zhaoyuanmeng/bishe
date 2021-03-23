@@ -4,6 +4,7 @@ import Index from "./views/index.vue"
 import List from "./views/list.vue"
 import Detail from "./views/detail.vue"
 import Upload from "./views/upload.vue"
+import Member from "./views/member.vue"
 
 Vue.use(Router);
 
@@ -26,5 +27,9 @@ export default new Router({
         {
             path: "/upload",
             component:Upload
+        },
+        {
+            path: "/member",
+            component:Member
         }]
 })
