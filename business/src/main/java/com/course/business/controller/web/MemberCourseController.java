@@ -4,11 +4,13 @@ import com.course.server.dto.MemberCourseDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.MemberCourseService;
 import com.course.server.util.ValidatorUtil;
+import com.course.server.vo.MemberCourseVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController("webMemberCourseController")
 @RequestMapping("/web/member-course")
@@ -44,5 +46,26 @@ public class MemberCourseController {
         memberCourseDto = memberCourseService.getEnroll(memberCourseDto);
         responseDto.setContent(memberCourseDto);
         return responseDto;
+    }
+
+//    新家的
+    /**
+     * 获取会员报名的课程列表
+     * @param memberId
+     * @return
+     */
+    @GetMapping("getMemberCourse/{memberId}")
+    public List<MemberCourseVO> getMemberCourse(@PathVariable String memberId){
+        List<MemberCourseVO> memberCourseList = memberCourseService.getMemberCourseList(memberId);
+        return memberCourseList;
+    }
+
+    /**
+     * 会员删除所报的课程
+     * @param id
+     */
+    @GetMapping("deleteCourseMember/{id}")
+    public void deleteCourseMember(@PathVariable String id){
+        memberCourseService.delete(id);
     }
 }

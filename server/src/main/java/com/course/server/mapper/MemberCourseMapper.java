@@ -3,6 +3,8 @@ package com.course.server.mapper;
 import com.course.server.domain.MemberCourse;
 import com.course.server.domain.MemberCourseExample;
 import java.util.List;
+
+import com.course.server.vo.MemberCourseVO;
 import org.apache.ibatis.annotations.Param;
 
 public interface MemberCourseMapper {
@@ -27,4 +29,11 @@ public interface MemberCourseMapper {
     int updateByPrimaryKeySelective(MemberCourse record);
 
     int updateByPrimaryKey(MemberCourse record);
+
+    /**
+     * 通过会员id查询课程列表
+     * @param memberId
+     * @return
+     */
+    List<MemberCourseVO> selectCourseListByMemberId(String memberId);
 }

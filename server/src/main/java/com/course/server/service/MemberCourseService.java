@@ -7,6 +7,7 @@ import com.course.server.dto.PageDto;
 import com.course.server.mapper.MemberCourseMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
+import com.course.server.vo.MemberCourseVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -112,4 +113,14 @@ public class MemberCourseService {
         MemberCourse memberCourse = this.select(memberCourseDto.getMemberId(), memberCourseDto.getCourseId());
         return CopyUtil.copy(memberCourse, MemberCourseDto.class);
     }
+
+    /**
+     * 获取会员已报名课程列表
+     * @param memberId
+     * @return
+     */
+    public List<MemberCourseVO> getMemberCourseList(String memberId) {
+        return memberCourseMapper.selectCourseListByMemberId(memberId);
+    }
+
 }

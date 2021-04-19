@@ -64,6 +64,12 @@
             "children": [
                 {"id": "020801", "name": "增删改查", "request": ["/business/admin/course","/business/admin/course-content-file"]}
             ]
+        },
+        {
+            "id": "0209", "name": "评论管理", "page": "business/comment",
+            "children": [
+                {"id": "020901", "name": "增删改查", "request": ["/business/admin/comment"]}
+            ]
         }
     ]
 }, {

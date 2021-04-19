@@ -149,4 +149,23 @@ public class MemberController {
 
         return responseDto;
     }
+
+//    新家的
+    /**
+     * 更新会员信息
+     * @param memberDto
+     */
+    @PostMapping("updateMemberInfo")
+    public void updateMemberInfo(@RequestBody MemberDto memberDto){
+        memberService.save(memberDto);
+    }
+
+    /**
+     * 删除会员信息
+     * @param id
+     */
+    @GetMapping("deleteMember/{id}")
+    public void deleteMemberById(@PathVariable String id){
+        memberService.delete(id);
+    }
 }

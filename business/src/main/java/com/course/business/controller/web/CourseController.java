@@ -1,5 +1,6 @@
 package com.course.business.controller.web;
 
+import com.course.server.domain.Comment;
 import com.course.server.dto.CourseDto;
 import com.course.server.dto.CoursePageDto;
 import com.course.server.dto.PageDto;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.jnlp.IntegrationService;
 import java.util.List;
 
 @RestController("webCourseController")
@@ -68,4 +70,42 @@ public class CourseController {
         LOG.info("查找课程结束：{}", responseDto);
         return responseDto;
     }
+
+//    评论相关
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    @PostMapping("/comment-add")
+    public Integer addComment(@RequestBody Comment comment){
+        return courseService.addComment(comment);
+    }
+
+    /**
+     * 根据课程id查询评论
+     * @param courseId
+     * @return
+     */
+    @GetMapping("/comment-find/{courseId}")
+    public List<Comment> findComment(@PathVariable String courseId){
+        return courseService.findCommentByCourseId(courseId);
+    }
+
+
+    @GetMapping("/comment/delete/{id}")
+    public Integer deleteCommentById(@PathVariable String id){
+        return courseService.deleteById(id);
+    }
+
+    @GetMapping("/comment/findall")
+    public List<Comment> findAll(){
+        return courseService.findAll();
+    }
+
+    @GetMapping("/comment/findbyname/{name}")
+    public List<Comment> findCommentByName(@PathVariable String name){
+        return courseService.findCommentByName(name);
+    }
+
 }

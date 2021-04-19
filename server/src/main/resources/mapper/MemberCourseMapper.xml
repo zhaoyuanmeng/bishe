@@ -193,4 +193,11 @@
       `at` = #{at,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>
+
+  <select id="selectCourseListByMemberId" resultType="com.course.server.vo.MemberCourseVO">
+    SELECT mc.id, mc.member_id memberId, mc.course_id courseId, mc.`at` at, c.`name`,
+    c.summary, c.time, c.price, c.image, c.charge,c.enroll, c.created_at createdAt
+    FROM `member_course` mc LEFT JOIN `course` c ON 	mc.course_id = c.id
+    WHERE mc.member_id = #{memberId,jdbcType=CHAR}
+  </select>
 </mapper>

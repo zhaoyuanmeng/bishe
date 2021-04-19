@@ -1,10 +1,12 @@
 package com.course.server.service;
 
+import com.course.server.domain.Comment;
 import com.course.server.domain.Course;
 import com.course.server.domain.CourseContent;
 import com.course.server.domain.CourseExample;
 import com.course.server.dto.*;
 import com.course.server.enums.CourseStatusEnum;
+import com.course.server.mapper.CommentMapper;
 import com.course.server.mapper.CourseContentMapper;
 import com.course.server.mapper.CourseMapper;
 import com.course.server.mapper.my.MyCourseMapper;
@@ -225,5 +227,30 @@ public class CourseService {
         courseDto.setSections(sectionDtoList);
 
         return courseDto;
+    }
+
+    @Resource
+    private CommentMapper commentMapper;
+
+    public List<Comment> findCommentByCourseId(String courseId) {
+        return commentMapper.findCommentByCourseId(courseId);
+    }
+
+    public Integer addComment(Comment comment) {
+        comment.setId(UuidUtil.getShortUuid());
+        comment.setCreateTime(new Date());
+        return commentMapper.insert(comment);
+    }
+
+    public List<Comment> findAll() {
+        return commentMapper.findAll();
+    }
+
+    public Integer deleteById(String id){
+        return commentMapper.deleteById(id);
+    }
+
+    public List<Comment> findCommentByName(String name) {
+        return commentMapper.findCommentByName(name);
     }
 }

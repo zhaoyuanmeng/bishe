@@ -449,6 +449,14 @@
 
                 <b class="arrow"></b>
               </li>
+              <li v-show="hasResource('0209')" class="" id="business-sms-sidebar">
+                <router-link to="/business/comment">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  评论管理
+                </router-link>
+
+                <b class="arrow"></b>
+              </li>
 
             </ul>
           </li>

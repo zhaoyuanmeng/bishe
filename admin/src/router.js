@@ -16,6 +16,7 @@ import Resource from "./views/admin/resource.vue"
 import Role from "./views/admin/role.vue"
 import Member from "./views/admin/member.vue"
 import Sms from "./views/admin/sms.vue"
+import Comment from "./views/admin/comment.vue"
 
 Vue.use(Router);
 
@@ -74,7 +75,12 @@ export default new Router({
             path: "business/sms",
             name: "business/sms",
             component: Sms,
-        }, {
+        },
+            {
+                path: "business/comment",
+                name: "business/comment",
+                component: Comment,
+            },{
             path: "file/file",
             name: "file/file",
             component: File,
@@ -94,6 +100,7 @@ export default new Router({
             path: "system/role",
             name: "system/role",
             component: Role,
-        }]
+        }
+           ]
     }]
 })
