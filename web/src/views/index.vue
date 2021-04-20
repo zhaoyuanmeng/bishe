@@ -11,6 +11,9 @@
         </p>
       </div>
     </section>
+
+   
+    <!-- end -->
     <div class="imgBox">
       <!-- 轮播图部分 -->
       <img class="img-slide img1" src="../assets/img1.jpg" alt="1" />
@@ -41,7 +44,6 @@
 </template>
 
 <script>
-
 import TheCourse from "../components/the-course";
 export default {
   name: "index",

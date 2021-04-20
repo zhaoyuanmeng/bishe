@@ -142,8 +142,21 @@
               <img v-bind:src="teacher.image" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">{{teacher.name}}</h5>
-                <p class="card-text">{{teacher.motto}}</p>
+                <p class="card-text">{{teacher.nickname}}</p>
                 <p class="card-text">{{teacher.intro}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9"></div>
+          <!-- 相关课程信息 -->
+          <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+              <h5 class="card-title" style="text-align:center;">相关课程</h5>
+              <div class="card-body">
+                <p class="card-text">签名：{{teacher.motto}}</p>
+                <p class="card-text">介绍：{{teacher.intro}}</p>
               </div>
             </div>
           </div>
@@ -161,9 +174,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title">支付页面</h4>
+            <h4 class="modal-title">报名窗口</h4>
           </div>
-          <div class="modal-body">花费222元吗</div>
+          <div class="modal-body">确定要报名吗</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <button v-on:click="save()" type="button" class="btn btn-primary">确定</button>

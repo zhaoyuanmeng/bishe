@@ -53,9 +53,8 @@
             </li>
           </ul>
           <div class="search">
-            <input type="text" name="condition" v-model="searchName" placeholder="请输入搜索的课程" />
-            <!--<input type="submit" value="搜索" v-on:click="search()">-->
-            <button v-on:click="search()">搜索</button>
+            <input type="text" v-model="searchName" placeholder="请输入搜索的课程" />
+            <div v-on:click="search()" class="search-btn">搜索</div>
           </div>
           <span v-show="loginMember.id" class="text-white pr-3">您好：{{loginMember.name}}</span>
           <button
@@ -79,34 +78,27 @@
 div.search {
   height: 30px;
   width: 300px;
+  font-size: 15px;
   display: flex;
+  position: relative;
+  padding: 5px;
+  left: -20px;
+  border-radius: 15px;
 }
-div.search form {
-  width: 100%;
-  height: 100%;
+div.search input {
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+  border-radius: 15px;
 }
-div.search form input:nth-child(2) {
-  width: 400px;
-  height: 100%;
-  font-size: 16px;
-  text-indent: 40px;
-  border: none;
-  float: left;
-}
-div.search form input:nth-child(3) {
-  width: 100px;
-  height: 100%;
-  font-size: 16px;
-  letter-spacing: 5px;
-  border: none;
-}
-div.search form img {
-  position: absolute;
-  left: 50vw;
-  transform: translateX(-250px);
-  margin-top: 10px;
-  margin-left: 10px;
-  height: 20px;
+.search-btn {
+  height: 30px;
+  width: 60px;
+  position: relative;
+  text-align: center;
+  left: -20px;
+  margin: 0 auto;
+  background-color: burlywood;
 }
 </style>
 <script>
