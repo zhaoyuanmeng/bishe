@@ -151,7 +151,7 @@
         <div class="row">
           <div class="col-md-9"></div>
           <!-- 相关课程信息 -->
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
             <div class="card" style="width: 18rem;">
               <h5 class="card-title" style="text-align:center;">相关课程</h5>
               <div class="card-body">
@@ -159,7 +159,7 @@
                 <p class="card-text">介绍：{{teacher.intro}}</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

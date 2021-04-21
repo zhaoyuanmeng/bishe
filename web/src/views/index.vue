@@ -12,15 +12,9 @@
       </div>
     </section>
 
-   
+    <!-- 轮播图组件 -->
+    <TheLbt></TheLbt>
     <!-- end -->
-    <div class="imgBox">
-      <!-- 轮播图部分 -->
-      <img class="img-slide img1" src="../assets/img1.jpg" alt="1" />
-      <img class="img-slide img2" src="../assets/img2.jpg" alt="2" />
-      <img class="img-slide img3" src="../assets/img3.jpg" alt="3" />
-    </div>
-
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="title1">最新上线</div>
@@ -45,9 +39,11 @@
 
 <script>
 import TheCourse from "../components/the-course";
+import TheLbt from "../components/the-lbt";
+
 export default {
   name: "index",
-  components: { TheCourse },
+  components: { TheCourse, TheLbt },
   data: function() {
     return {
       news: []

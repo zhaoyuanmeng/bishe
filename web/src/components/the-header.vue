@@ -46,7 +46,6 @@
               >更多</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/about">关于我们</a>
-                <a class="dropdown-item" href="/teacher">热门讲师</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">更多信息</a>
               </div>
