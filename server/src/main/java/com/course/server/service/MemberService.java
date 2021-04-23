@@ -143,4 +143,16 @@ public class MemberService {
             memberMapper.updateByPrimaryKeySelective(member);
         }
     }
+
+    /**
+     * 模糊查询会员名
+     */
+    public List<Member> listByName(String name) {
+        MemberExample memberExample = new MemberExample();
+        MemberExample.Criteria criteria = memberExample.createCriteria();
+        criteria.andNameLike("%"+name+"%");
+
+        List<Member> members = memberMapper.selectByExample(memberExample);
+        return members;
+    }
 }

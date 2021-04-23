@@ -37,6 +37,8 @@ public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
                 || path.contains("/system/admin/kaptcha")
                 || path.contains("/file/admin/check")
                 || path.contains("/business/admin/upload/save")
+                || path.contains("/business/admin/course")
+                || path.contains("/business/admin/teacher")
                 || path.contains("/file/admin/oss-append")) {
             LOG.info("不需要控台登录验证：{}", path);
             return chain.filter(exchange);

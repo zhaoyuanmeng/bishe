@@ -9,127 +9,18 @@
     <section class="flat-row bg-theme pd-top-100 wrap-our-teacher">
       <div class="container">
         <div class="row">
-          <div class="col-md-3 col-sm-6">
+          <!-- 模板 -->
+          <div class="col-md-3 col-sm-6" v-for="(teacher,index) in teachers" :key="index">
             <div class="flat-teammember">
               <div class="team-image">
-                <img alt="image" src="../assets/images/t1.jpg" />
+                <img alt="image" :src="teacher.image" />
               </div>
               <div class="profile">
                 <h6 class="name">
-                  <a href="#">周泰伦</a>
+                  <!-- <a href="#">{{teacher.name}}</a> -->
+                  <router-link v-bind:to="'/tdetail?id=' + teacher.id" class="btn btn-outline-secondary">{{teacher.name}}</router-link>
                 </h6>
-                <p class="position">前端开发工程师</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t2.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">赵元达</a>
-                </h6>
-                <p class="position">前端开发工程师</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t3.jpg" />
-              </div>
-             <div class="profile">
-                <h6 class="name">
-                  <a href="#">张国欣</a>
-                </h6>
-                <p class="position">后端开发工程师</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t4.jpg" />
-              </div>
-             <div class="profile">
-                <h6 class="name">
-                  <a href="#">小明</a>
-                </h6>
-                <p class="position">运维开发工程师</p>
+                <p class="position">{{teacher.position}}</p>
               </div>
               <ul class="flat-socials">
                 <li>
@@ -158,309 +49,6 @@
           </div>
           <!-- col.md-3 -->
         </div>
-        <!-- row -->
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t5.jpg" />
-              </div>
-             <div class="profile">
-                <h6 class="name">
-                  <a href="#">小红</a>
-                </h6>
-                <p class="position">UI著名讲师</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t6.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">MIRSSD</a>
-                </h6>
-                <p class="position">前端开发工程师</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t2.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Kiwhi Leonard</a>
-                </h6>
-                <p class="position">ADVISOR PROFESSOR</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t5.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Kiwhi Leonard</a>
-                </h6>
-                <p class="position">HEAD TEACHER</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-        </div>
-        <!-- row -->
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t3.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Kiwhi Leonard</a>
-                </h6>
-                <p class="position">ADVISOR PROFESSOR</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t5.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Kiwhi Leonard</a>
-                </h6>
-                <p class="position">HEAD TEACHER</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t6.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Jana Smith</a>
-                </h6>
-                <p class="position">ASISSTENT TEACHER</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-          <div class="col-md-3 col-sm-6">
-            <div class="flat-teammember">
-              <div class="team-image">
-                <img alt="image" src="../assets/images/t6.jpg" />
-              </div>
-              <div class="profile">
-                <h6 class="name">
-                  <a href="#">Maria Bella</a>
-                </h6>
-                <p class="position">VICE HEAD TEACHER</p>
-              </div>
-              <ul class="flat-socials">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- flat-teammember -->
-          </div>
-          <!-- col.md-3 -->
-        </div>
-        <!-- row -->
         <div class="row">
           <div class="dividers h50"></div>
         </div>
@@ -504,7 +92,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      teachers: [] //老师列表
+    };
+  },
+  methods: {
+    // 获取老师列表
+    list() {
+      let _this = this;
+      _this.$ajax
+        .post(process.env.VUE_APP_SERVER + "/business/admin/teacher/all")
+        .then(response => {
+          // Loading.hide();
+          let resp = response.data.content;
+          _this.teachers = resp;
+          console.log(resp);
+        });
+    }
+  },
+  mounted() {
+    // 获取到老师列表
+    this.list();
+  }
+};
 </script>
 
 <style scoped>

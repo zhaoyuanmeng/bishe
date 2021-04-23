@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.domain.Teacher;
 import com.course.server.dto.TeacherDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
@@ -43,6 +44,16 @@ public class TeacherController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
+    /**
+     * 列表查询模糊
+     */
+    @GetMapping("/findbyname/{name}")
+    public ResponseDto findbyname(@PathVariable("name") String name) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Teacher> teachers = teacherService.listByName(name);
+        responseDto.setContent(teachers);
+        return responseDto;
+    }
 
     /**
      * 保存，id有值时更新，无值时新增
@@ -64,6 +75,7 @@ public class TeacherController {
         return responseDto;
     }
 
+
     /**
      * 删除
      */
@@ -72,5 +84,16 @@ public class TeacherController {
         ResponseDto responseDto = new ResponseDto();
         teacherService.delete(id);
         return responseDto;
+    }
+
+    /**
+     * 根据老师id查询
+     */
+    @GetMapping("/findbyid/{id}")
+    public ResponseDto findbyid(@PathVariable("id") String id) {
+        ResponseDto responseDto = new ResponseDto();
+        TeacherDto teacherDto = teacherService.findById(id);
+        responseDto.setContent(teacherDto);
+        return  responseDto;
     }
 }

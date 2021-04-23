@@ -90,7 +90,24 @@ export default {
     /**
      * 会员查询
      */
-    search() {}
+    search() {
+        let _this = this;
+
+      Loading.show();
+      _this.$ajax
+        .get(
+          process.env.VUE_APP_SERVER +
+            "/business/admin/member/findbyname/" +
+            _this.name
+        )
+        .then(response => {
+          Loading.hide();
+          // let resp = response.data;
+          _this.members = response.data.content;
+          console.log("搜索列表", _this.members);
+        });
+      _this.name = "";
+    }
   }
 };
 </script>

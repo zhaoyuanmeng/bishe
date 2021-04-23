@@ -279,6 +279,7 @@ export default {
   data: function() {
     return {
       course: {},
+      name: "", //搜索的课程名
       courses: [],
       COURSE_LEVEL: COURSE_LEVEL,
       COURSE_CHARGE: COURSE_CHARGE,
@@ -317,9 +318,26 @@ export default {
       $("#form-modal").modal("show");
     },
     /**
-     * 点击【新增】
+     * 点击【搜索】
      */
-    search() {},
+    search() {
+      let _this = this;
+
+      Loading.show();
+      _this.$ajax
+        .get(
+          process.env.VUE_APP_SERVER +
+            "/business/admin/course/findbyname/" +
+            _this.name
+        )
+        .then(response => {
+          Loading.hide();
+          // let resp = response.data;
+          _this.courses = response.data.content;
+          console.log("搜索列表", _this.courses);
+        });
+      _this.name = "";
+    },
 
     /**
      * 点击【编辑】

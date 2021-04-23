@@ -1,14 +1,14 @@
 package com.course.business.controller.admin;
 
+import com.course.server.domain.Member;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -32,4 +32,16 @@ public class MemberController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
+
+    /**
+     * 列表查询模糊
+     */
+    @GetMapping("/findbyname/{name}")
+    public ResponseDto findbyname(@PathVariable("name") String name) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Member> members = memberService.listByName(name);
+        responseDto.setContent(members);
+        return responseDto;
+    }
+
 }

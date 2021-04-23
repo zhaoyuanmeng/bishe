@@ -7,6 +7,8 @@ import Upload from "./views/upload.vue"
 import Member from "./views/member.vue"
 import About from "./views/about.vue"
 import Teacher from "./views/teacher.vue"
+import Tdetail from "./views/tdetail.vue"
+
 
 Vue.use(Router);
 
@@ -41,5 +43,9 @@ export default new Router({
     {
         path: "/teacher",
         component: Teacher
+    },
+    {
+        path: "/tdetail",
+        component: Tdetail
     }]
 })

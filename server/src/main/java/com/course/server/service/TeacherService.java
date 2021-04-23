@@ -1,5 +1,7 @@
 package com.course.server.service;
 
+import com.course.server.domain.Course;
+import com.course.server.domain.CourseExample;
 import com.course.server.domain.Teacher;
 import com.course.server.domain.TeacherExample;
 import com.course.server.dto.PageDto;
@@ -84,5 +86,14 @@ public class TeacherService {
     public TeacherDto findById(String id) {
         Teacher teacher = teacherMapper.selectByPrimaryKey(id);
         return CopyUtil.copy(teacher, TeacherDto.class);
+    }
+
+    public List<Teacher> listByName(String name) {
+        TeacherExample teacherExample = new TeacherExample();
+        TeacherExample.Criteria criteria = teacherExample.createCriteria();
+        criteria.andNameLike("%"+name+"%");
+
+        List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
+        return teachers;
     }
 }

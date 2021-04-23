@@ -25,9 +25,9 @@ export default {
   data: function() {
     return {
       dataList: [
-        "https://i1.mifile.cn/a4/xmad_15535933141925_ulkYv.jpg",
-        "https://i1.mifile.cn/a4/xmad_15532384207972_iJXSx.jpg",
-        "https://i1.mifile.cn/a4/xmad_15517939170939_oiXCK.jpg"
+        "https://static.fotor.com.cn/assets/projects/pages/76ef8c70-f148-11e8-82bf-bdb9777d9961_503b27a5-d9f5-4982-9e31-6a53a78693ab_thumb.jpg",
+        "https://static.fotor.com.cn/assets/projects/pages/41eb83be1fd94ffea2cee429bc371f12_704d27d7ccc24366b1a4158c78cf1efe_thumb.jpg",
+        "https://static.fotor.com.cn/assets/projects/pages/43ab44b0-e3df-11e8-8daa-cf5232774662_f630e48b-82db-4aea-b98f-a2ff9ae2aaee_thumb.jpg"
       ],
       currentIndex: 0, //默认显示图片
       timer: null //定时器
@@ -87,14 +87,16 @@ ul li {
 }
 
 .banner {
-  max-width: 1200px;
+  width: 100%;
+  /* max-width: 1200px; */
   margin: 0 auto;
   position: relative;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 .banner img {
   width: 100%;
+  height: 570px;
   display: block;
 }
 

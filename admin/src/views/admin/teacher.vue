@@ -193,10 +193,25 @@ export default {
       $("#form-modal").modal("show");
     },
      /**
-     * 点击【新增】
+     * 点击【搜索】
      */
-    search() {
-     
+   search() {
+      let _this = this;
+
+      Loading.show();
+      _this.$ajax
+        .get(
+          process.env.VUE_APP_SERVER +
+            "/business/admin/teacher/findbyname/" +
+            _this.name
+        )
+        .then(response => {
+          Loading.hide();
+          // let resp = response.data;
+          _this.teachers = response.data.content;
+          console.log("搜索列表", _this.teachers);
+        });
+      _this.name = "";
     },
 
     /**

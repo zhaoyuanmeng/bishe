@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.domain.Course;
 import com.course.server.dto.*;
 import com.course.server.service.CourseCategoryService;
 import com.course.server.service.CourseService;
@@ -32,6 +33,16 @@ public class CourseController {
         ResponseDto responseDto = new ResponseDto();
         courseService.list(pageDto);
         responseDto.setContent(pageDto);
+        return responseDto;
+    }
+    /**
+     * 列表查询模糊
+     */
+    @GetMapping("/findbyname/{name}")
+    public ResponseDto findbyname(@PathVariable("name") String name) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Course> courses = courseService.listByName(name);
+        responseDto.setContent(courses);
         return responseDto;
     }
 
@@ -97,6 +108,15 @@ public class CourseController {
         return responseDto;
     }
 
-
+    /**
+     *  查询老师的所有课程
+     */
+    @GetMapping("/findbyteacher/{tid}")
+    public ResponseDto findbyteacher(@PathVariable("tid") String tid) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Course> courses = courseService.listByTid(tid);
+        responseDto.setContent(courses);
+        return responseDto;
+    }
 
 }

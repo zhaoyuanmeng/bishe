@@ -60,6 +60,14 @@ public class CourseService {
         PageInfo<CourseDto> pageInfo = new PageInfo<>(courseDtoList);
         pageDto.setTotal(pageInfo.getTotal());
         pageDto.setList(courseDtoList);
+    }/**
+     * 列表查询：关联课程分类模糊查询
+     */
+    public List<Course> listByName(String name) {
+        CourseExample courseExample = new CourseExample();
+        courseExample.createCriteria().andNameLike("%"+name+"%");
+        List<Course> courses = courseMapper.selectByExample(courseExample);
+        return courses;
     }
 
     /**
@@ -182,7 +190,6 @@ public class CourseService {
         if (courses.size()>0) {
             id = courses.get(0).getId();
 
-
         }
         return id;
         /*List<Integer> courseIdList = new arrayList();
@@ -252,5 +259,14 @@ public class CourseService {
 
     public List<Comment> findCommentByName(String name) {
         return commentMapper.findCommentByName(name);
+    }
+
+    // 根据老师的id查询所有的课程
+    public List<Course> listByTid(String tid) {
+        CourseExample courseExample = new CourseExample();
+        CourseExample.Criteria criteria = courseExample.createCriteria();
+        criteria.andTeacherIdEqualTo(tid);
+        List<Course> courses = courseMapper.selectByExample(courseExample);
+        return courses;
     }
 }
