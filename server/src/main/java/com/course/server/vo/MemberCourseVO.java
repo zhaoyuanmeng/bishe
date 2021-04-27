@@ -8,7 +8,7 @@ import java.util.Date;
 public class MemberCourseVO {
 
     /**
-     * 会员与课程关联id
+     * 会员与课程关联id 订单Id
      */
     private String id;
 
@@ -69,6 +69,10 @@ public class MemberCourseVO {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdAt;
 
+    /**
+     * 会员名
+     * @return
+     */
     public String getId() {
         return id;
     }

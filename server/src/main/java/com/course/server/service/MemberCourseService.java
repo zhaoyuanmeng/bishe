@@ -1,10 +1,16 @@
 package com.course.server.service;
 
+import com.course.server.domain.Course;
+import com.course.server.domain.Member;
 import com.course.server.domain.MemberCourse;
 import com.course.server.domain.MemberCourseExample;
+import com.course.server.dto.CourseDto;
 import com.course.server.dto.MemberCourseDto;
+import com.course.server.dto.MemberDto;
 import com.course.server.dto.PageDto;
+import com.course.server.mapper.CourseMapper;
 import com.course.server.mapper.MemberCourseMapper;
+import com.course.server.mapper.MemberMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.course.server.vo.MemberCourseVO;
@@ -16,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -23,6 +30,12 @@ public class MemberCourseService {
 
     @Resource
     private MemberCourseMapper memberCourseMapper;
+    @Resource
+    private MemberMapper memberMapper;
+    @Resource
+    private CourseMapper courseMapper;
+    @Resource
+    private MemberService memberService;
 
     /**
      * 列表查询
@@ -35,6 +48,35 @@ public class MemberCourseService {
         pageDto.setTotal(pageInfo.getTotal());
         List<MemberCourseDto> memberCourseDtoList = CopyUtil.copyList(memberCourseList, MemberCourseDto.class);
         pageDto.setList(memberCourseDtoList);
+    }
+
+    /**
+     * 列表查询(test)
+     */
+    public void lista(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        MemberCourseExample memberCourseExample = new MemberCourseExample();
+        List<MemberCourseDto> list = new LinkedList<>();
+        List<MemberCourse> memberCourseList = memberCourseMapper.selectByExample(memberCourseExample);
+
+        for (MemberCourse memberCourse : memberCourseList) {
+            Member member = memberMapper.selectByPrimaryKey(memberCourse.getMemberId());
+            MemberDto memberDto = CopyUtil.copy(member, MemberDto.class);
+            Course course = courseMapper.selectByPrimaryKey(memberCourse.getCourseId());
+            CourseDto courseDto = CopyUtil.copy(course, CourseDto.class);
+            MemberCourseDto memberCourseDto = CopyUtil.copy(memberCourse,MemberCourseDto.class);
+            memberCourseDto.setCourseDto(courseDto);
+            memberCourseDto.setMemberDto(memberDto);
+            list.add(memberCourseDto);
+
+
+        }
+
+        PageInfo<MemberCourse> pageInfo = new PageInfo<>(memberCourseList);
+        pageDto.setTotal(pageInfo.getTotal());
+//        List<MemberCourseDto> memberCourseDtoList = CopyUtil.copyList(memberCourseList, MemberCourseDto.class);
+        pageDto.setList(list);
+
     }
 
     /**
@@ -122,5 +164,6 @@ public class MemberCourseService {
     public List<MemberCourseVO> getMemberCourseList(String memberId) {
         return memberCourseMapper.selectCourseListByMemberId(memberId);
     }
+
 
 }

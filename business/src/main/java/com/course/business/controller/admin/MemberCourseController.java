@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.domain.MemberCourse;
 import com.course.server.dto.MemberCourseDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/memberCourse")
@@ -28,6 +30,17 @@ public class MemberCourseController {
     public ResponseDto list(@RequestBody PageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
         memberCourseService.list(pageDto);
+        responseDto.setContent(pageDto);
+        return responseDto;
+    }
+
+    /**
+     * 列表查询(新的类型)
+     */
+    @PostMapping("/lista")
+    public ResponseDto lista(@RequestBody PageDto pageDto) {
+        ResponseDto responseDto = new ResponseDto();
+        memberCourseService.lista(pageDto);
         responseDto.setContent(pageDto);
         return responseDto;
     }
@@ -57,4 +70,6 @@ public class MemberCourseController {
         memberCourseService.delete(id);
         return responseDto;
     }
+
+
 }

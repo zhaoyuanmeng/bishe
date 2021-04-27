@@ -1,6 +1,8 @@
 package com.course.server.dto;
 
 import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class MemberCourseDto {
@@ -21,10 +23,35 @@ public class MemberCourseDto {
     private String courseId;
 
     /**
+     * 会员信息
+     */
+    private MemberDto memberDto;
+    /**
+     * 课程信息
+     */
+    private CourseDto courseDto;
+
+    /**
      * 报名时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date at;
+
+    public MemberDto getMemberDto() {
+        return memberDto;
+    }
+
+    public void setMemberDto(MemberDto memberDto) {
+        this.memberDto = memberDto;
+    }
+
+    public CourseDto getCourseDto() {
+        return courseDto;
+    }
+
+    public void setCourseDto(CourseDto courseDto) {
+        this.courseDto = courseDto;
+    }
 
     public String getId() {
         return id;

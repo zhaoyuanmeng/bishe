@@ -70,6 +70,12 @@
             "children": [
                 {"id": "020901", "name": "增删改查", "request": ["/business/admin/comment"]}
             ]
+        },
+        {
+            "id": "0210", "name": "订单管理", "page": "business/order",
+            "children": [
+                {"id": "021001", "name": "增删改查", "request": ["/business/admin/memberCourse"]}
+            ]
         }
     ]
 }, {
