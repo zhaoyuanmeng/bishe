@@ -130,6 +130,8 @@ public class MemberCourseService {
             // 如果已经报名，则直接返回已报名的信息
             return CopyUtil.copy(memberCourseDb, MemberCourseDto.class);
         }
+
+        //这里想操作一下course表里面的enroll增1 如果报名成功的话
     }
 
     /**

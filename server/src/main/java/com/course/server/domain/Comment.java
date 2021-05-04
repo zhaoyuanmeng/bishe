@@ -7,8 +7,18 @@ public class Comment {
     private String courseId;
     private String memberId;
     private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     private Date createTime;
     private String name;
+    private Integer pf;
 
     public String getId() {
         return id;
@@ -16,6 +26,14 @@ public class Comment {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getPf() {
+        return pf;
+    }
+
+    public void setPf(Integer pf) {
+        this.pf = pf;
     }
 
     public String getCourseId() {
@@ -34,12 +52,16 @@ public class Comment {
         this.memberId = memberId;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id='" + id + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", memberId='" + memberId + '\'' +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public Date getCreateTime() {
@@ -58,15 +80,4 @@ public class Comment {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id='" + id + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", memberId='" + memberId + '\'' +
-                ", content='" + content + '\'' +
-                ", createTime=" + createTime +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

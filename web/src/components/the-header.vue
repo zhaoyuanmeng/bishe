@@ -51,10 +51,10 @@
               </div>
             </li>
           </ul>
-          <div class="search">
+          <!-- <div class="search">
             <input type="text" v-model="searchName" placeholder="请输入搜索的课程" />
             <div v-on:click="search()" class="search-btn">搜索</div>
-          </div>
+          </div>-->
           <span v-show="loginMember.id" class="text-white pr-3">您好：{{loginMember.name}}</span>
           <button
             v-show="loginMember.id"

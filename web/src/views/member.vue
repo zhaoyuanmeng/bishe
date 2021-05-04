@@ -291,6 +291,9 @@ export default {
 </script>
 
 <style>
+.tab_box {
+  display: flex;
+}
 .mem-h3 {
   line-height: 20px;
 }

@@ -8,11 +8,13 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pf" jdbcType="INTEGER" property="pf" />
   </resultMap>
   <insert id="insert" parameterType="com.course.server.domain.Comment">
     INSERT INTO `comment`
-    VALUES (#{id},#{courseId},#{memberId},#{content},#{createTime},#{name})
+    VALUES (#{id},#{courseId},#{memberId},#{content},#{createTime},#{name},#{pf})
   </insert>
+
   <select id="findCommentByCourseId" resultMap="BaseResultMap">
     SELECT * FROM `comment` WHERE course_id = #{courseId}
   </select>

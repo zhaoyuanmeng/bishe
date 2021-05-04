@@ -111,6 +111,9 @@
                         placeholder="Say somthing..."
                         v-model="content"
                       ></textarea>
+                      <div class="con">
+                        <input type="range" name="star" min="0" max="5" v-model="pf" />
+                      </div>
                       <!-- <input type="submit" value="提交" @click="sendComment" /> -->
                       <button @click="sendComment">发送</button>
                     </div>
@@ -159,7 +162,7 @@
                 <p class="card-text">介绍：{{teacher.intro}}</p>
               </div>
             </div>
-          </div> -->
+          </div>-->
         </div>
       </div>
     </div>
@@ -204,6 +207,7 @@ export default {
       sections: [],
       conent: "", //评论内容
       content_arr: [], //评论列表
+      pf: 0,
       memberCourse: {},
       member: {},
       COURSE_LEVEL: COURSE_LEVEL,
@@ -380,6 +384,8 @@ export default {
     sendComment() {
       var _this = this;
       let loginMember = Tool.getLoginMember();
+      // 获取评分
+      console.log("评分", _this.pf);
       if (Tool.isEmpty(loginMember)) {
         console.log("未登录");
         return;
@@ -390,7 +396,8 @@ export default {
           courseId: _this.course.id,
           memberId: loginMember.id,
           name: loginMember.name,
-          content: _this.content
+          content: _this.content,
+          pf: _this.pf
         })
         .then(response => {
           let resp = response.data;
@@ -404,6 +411,33 @@ export default {
 </script>
 
 <style>
+/* 评分 */
+.con {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100px;
+  margin: 0;
+  outline: 0;
+}
+input[type="range" i]::-webkit-slider-runnable-track {
+  background: coral;
+  height: 20px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg width='12' height='11' viewBox='0 0 12 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 0l1.693 3.67 4.013.476L8.74 6.89l.788 3.964L6 8.88l-3.527 1.974.788-3.964L.294 4.146l4.013-.476L6 0z' fill='%23F67600'/%3E%3C/svg%3E");
+  -webkit-mask-size: 20px;
+  -webkit-mask-repeat: repeat-x;
+}
+input[type="range" i]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 100%;
+  box-shadow: 999px 0px 0px 999px #e8eaed;
+}
+
 /* 课程信息 */
 .course-head {
 }

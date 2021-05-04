@@ -21,6 +21,11 @@
           </div>
         </div>
       </div>
+      <!-- 搜索框 -->
+      <div class="search">
+        <input type="text" v-model="searchName" placeholder="请输入搜索的课程" />
+        <div v-on:click="search()" class="search-btn">搜索</div>
+      </div>
     </div>
     <div class="skill clearfix">
       <div class="container">
@@ -45,6 +50,12 @@
       </div>
     </div>
     <div class="album py-5 bg-light">
+      <div class="btns">
+        <button @click="DescTime">时间降序</button>
+        <button @click="AscTime">时间升序</button>
+        <button @click="AscPrice">价格降序</button>
+        <button @click="DescPrice">价格升序</button>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -74,17 +85,18 @@ export default {
   name: "list",
   data: function() {
     return {
-      courses: [],
-      level1: [],
-      level2: [],
-      categorys: [],
-      level1Id: "",
-      level2Id: ""
+      courses: [], //课程列表
+      level1: [], //一级分类
+      level2: [], //二级分类
+      categorys: [], //分类信息
+      level1Id: "", //一级分类id
+      level2Id: "", //二级分类id
+      searchName: "" //查询的关键字
     };
   },
   mounted() {
     let _this = this;
-    _this.$refs.pagination.size = 1;
+    _this.$refs.pagination.size = 5;
     _this.listCourse(1);
     _this.allCategory();
   },
@@ -212,11 +224,75 @@ export default {
 
       // 重新加载课程列表
       _this.listCourse(1);
+    },
+
+    // 根据时间排序降序
+    DescTime() {
+      console.log(this.courses);
+      this.courses.sort(function(a, b) {
+        return (Date.parse(a.createdAt) - Date.parse(b.createdAt)) * -1; //时间正序  return的值  *-1 则为倒序
+      });
+      console.log(this.courses);
+    },
+    //
+    // 根据时间升序升序
+    AscTime() {
+      console.log(this.courses);
+      this.courses.sort(function(a, b) {
+        return Date.parse(a.createdAt) - Date.parse(b.createdAt); //时间正序  return的值  *-1 则为倒序
+      });
+      console.log(this.courses);
+    },
+
+    // 根据价格升序
+    AscPrice() {
+      console.log(this.courses);
+      this.courses.sort(function(a, b) {
+        return a.price - b.price; //时间正序  return的值  *-1 则为倒序
+      });
+      console.log(this.courses);
+    },
+    // 根据价格降序
+    DescPrice() {
+      console.log(this.courses);
+      this.courses.sort(function(a, b) {
+        return (a.price - b.price) * -1; //时间正序  return的值  *-1 则为倒序
+      });
+      console.log(this.courses);
+    },
+    /**
+     * 使用indexof方法实现模糊查询
+     * @param  {Array}  list     进行查询的数组
+     * @param  {String} keyWord  查询的关键词
+     * @return {Array}           查询的结果
+     */
+    fuzzyQuery(list, keyWord) {
+      var arr = [];
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].name.indexOf(keyWord) >= 0) {
+          arr.push(list[i]);
+        }
+      }
+      return arr;
+    },
+    // 模糊搜索
+    search() {
+      let list = this.courses;
+      let keyWord = this.searchName;
+      this.courses = this.fuzzyQuery(list, keyWord);
+      this.searchName = "";
+      console.log("搜索到的结果", this.courses);
     }
   }
 };
 </script>
 <style>
+.btns {
+  position: relative;
+  left: 200px;
+  padding-right: 10px;
+  top: -30px;
+}
 .fff {
   float: left;
 }
@@ -293,4 +369,33 @@ export default {
 .skill a:hover {
   background: #d9dde1;
 }
+
+/* 搜索框 */
+div.search {
+  height: 30px;
+  width: 300px;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  left: 404px;
+  top: -39px;
+  border-radius: 15px;
+}
+div.search input {
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+  border-radius: 15px;
+}
+.search-btn {
+  height: 30px;
+  width: 60px;
+  position: relative;
+  text-align: center;
+  left: -20px;
+  margin: 0 auto;
+  background-color: burlywood;
+}
+
+/* end */
 </style>

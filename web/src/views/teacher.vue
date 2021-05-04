@@ -6,7 +6,12 @@
             <h2 class="loader">Loading</h2>
         </div>
     </section>-->
+
     <section class="flat-row bg-theme pd-top-100 wrap-our-teacher">
+      <div class="search">
+        <input type="text" v-model="searchName" placeholder="请输入搜索的老师" />
+        <div v-on:click="search()" class="search-btn">搜索</div>
+      </div>
       <div class="container">
         <div class="row">
           <!-- 模板 -->
@@ -18,7 +23,10 @@
               <div class="profile">
                 <h6 class="name">
                   <!-- <a href="#">{{teacher.name}}</a> -->
-                  <router-link v-bind:to="'/tdetail?id=' + teacher.id" class="btn btn-outline-secondary">{{teacher.name}}</router-link>
+                  <router-link
+                    v-bind:to="'/tdetail?id=' + teacher.id"
+                    class="btn btn-outline-secondary"
+                  >{{teacher.name}}</router-link>
                 </h6>
                 <p class="position">{{teacher.position}}</p>
               </div>
@@ -95,7 +103,8 @@
 export default {
   data() {
     return {
-      teachers: [] //老师列表
+      teachers: [], //老师列表
+      searchName: "" //搜索的关键字
     };
   },
   methods: {
@@ -110,6 +119,30 @@ export default {
           _this.teachers = resp;
           console.log(resp);
         });
+    },
+
+    /**
+     * 使用indexof方法实现模糊查询
+     * @param  {Array}  list     进行查询的数组
+     * @param  {String} keyWord  查询的关键词
+     * @return {Array}           查询的结果
+     */
+    fuzzyQuery(list, keyWord) {
+      var arr = [];
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].name.indexOf(keyWord) >= 0) {
+          arr.push(list[i]);
+        }
+      }
+      return arr;
+    },
+    // 模糊搜索
+    search() {
+      let list = this.teachers;
+      let keyWord = this.searchName;
+      this.teachers = this.fuzzyQuery(list, keyWord);
+      this.searchName = "";
+      console.log("搜索到的结果", this.teachers);
     }
   },
   mounted() {
@@ -120,4 +153,29 @@ export default {
 </script>
 
 <style scoped>
+div.search {
+  height: 30px;
+  width: 300px;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  left: 200px;
+  top: -50px;
+  border-radius: 15px;
+}
+div.search input {
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+  border-radius: 15px;
+}
+.search-btn {
+  height: 30px;
+  width: 60px;
+  position: relative;
+  text-align: center;
+  left: -20px;
+  margin: 0 auto;
+  background-color: burlywood;
+}
 </style>

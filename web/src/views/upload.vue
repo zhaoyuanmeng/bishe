@@ -166,7 +166,7 @@ export default {
 .content {
   width: 800px;
   height: 600px;
-  margin: 50px auto;
+  margin: 0px auto;
   /*background-color: #0B61A4;*/
 }
 .modal {
