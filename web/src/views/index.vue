@@ -52,6 +52,7 @@ export default {
   mounted() {
     let _this = this;
     _this.listNew();
+    _this.tuijian();
   },
   methods: {
     /**
@@ -67,6 +68,20 @@ export default {
           if (resp.success) {
             _this.news = resp.content;
           }
+        })
+        .catch(response => {
+          console.log("error：", response);
+        });
+    },
+
+    // 课程推荐
+    tuijian() {
+      let _this = this;
+      let cid = "CTHKUyUy";
+      _this.$ajax
+        .get("http://localhost:3000/ja?cid=" + cid)
+        .then(response => {
+          console.log("查询推荐结果：", response);
         })
         .catch(response => {
           console.log("error：", response);

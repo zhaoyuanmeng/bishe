@@ -249,7 +249,7 @@
               <div class="widget-header widget-header-flat">
                 <h4 class="widget-title lighter">
                   <i class="ace-icon fa fa-star orange"></i>
-                  课程播放排名
+                  课程报名
                 </h4>
 
                 <div class="widget-toolbar">
@@ -273,48 +273,18 @@
                         </th>
 
                         <th class="hidden-480">
-                          <i class="ace-icon fa fa-caret-right blue"></i>播放人数
+                          <i class="ace-icon fa fa-caret-right blue"></i>报名人数
                         </th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      <tr>
-                        <td>Java爱不释手入门</td>
-
-                        <td>
-                          <small>
-                            <s class="red">$29.99</s>
-                          </small>
-                          <b class="green">$19.99</b>
-                        </td>
+                      <tr v-for="course in courses">
+                        <td>{{course.name}}</td>
+                        <td>{{course.price}}</td>
 
                         <td class="hidden-480">
-                          <span class="label label-info arrowed-right arrowed-in">55</span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>PHP从入门到精通</td>
-
-                        <td>
-                          <b class="blue">$16.45</b>
-                        </td>
-
-                        <td class="hidden-480">
-                          <span class="label label-success arrowed-in arrowed-in-right">66</span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>Java从入门到精通</td>
-
-                        <td>
-                          <b class="blue">$15.00</b>
-                        </td>
-
-                        <td class="hidden-480">
-                          <span class="label label-danger arrowed">92</span>
+                          <span class="label label-info arrowed-right arrowed-in">{{course.enroll}}</span>
                         </td>
                       </tr>
                     </tbody>
@@ -378,6 +348,12 @@ export default {
     // this.$parent.activeSidebar("welcome-sidebar");
     this.drawSaleChart();
     this.drawZhuChart();
+    this.list(1);
+  },
+  data() {
+    return {
+      courses: []
+    };
   },
   methods: {
     // 播放量的图表
@@ -385,11 +361,11 @@ export default {
       // 生成随机数据
       let d1 = [];
       for (let i = 0; i < 30; i++) {
-        d1.push([i + 1, 1900 + Math.floor(Math.random() * 100 + 1)]);
+        d1.push([i + 1, 10 + Math.floor(Math.random() * 100 + 1)]);
       }
       let d2 = [];
       for (let i = 0; i < 30; i++) {
-        d2.push([i + 1, 1900 + Math.floor(Math.random() * 100 + 1)]);
+        d2.push([i + 1, 10 + Math.floor(Math.random() * 100 + 1)]);
       }
       let sales_charts = $("#sales-charts").css({
         width: "100%",
@@ -483,6 +459,35 @@ export default {
           previousPoint = null;
         }
       });
+    },
+
+    // 获取课程的信息
+    /**
+     * 列表查询
+     */
+    list(page) {
+      let _this = this;
+      Loading.show();
+      _this.$ajax
+        .post(process.env.VUE_APP_SERVER + "/business/admin/course/list", {
+          page: page,
+          size: 100
+        })
+        .then(response => {
+          Loading.hide();
+          let resp = response.data;
+          _this.courses = resp.content.list;
+          this.courseP(); //获取排行榜数据
+          console.log(_this.courses);
+        });
+    },
+
+    // 根据报名数排序
+    courseP() {
+      this.courses.sort(function(a, b) {
+        return (a.enroll - b.enroll) * -1; //时间正序  return的值  *-1 则为倒序
+      });
+      console.log("课程排行帮", this.courses);
     }
   }
 };

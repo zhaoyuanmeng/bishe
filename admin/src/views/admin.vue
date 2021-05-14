@@ -496,7 +496,7 @@
               <li v-show="hasResource('0210')" class id="business-order-sidebar">
                 <router-link to="/business/order">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  订单管理
+                  报名管理
                 </router-link>
                 <b class="arrow"></b>
               </li>

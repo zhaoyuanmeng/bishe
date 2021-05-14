@@ -284,7 +284,18 @@ export default {
       }
       _this.$refs.modalPlayer.playVod(section.vod);
     },
-
+    // 报名加一
+    jiayi() {
+      let _this = this;
+      _this.$ajax
+        .get("http://localhost:3000/ja?cid=" + _this.course.id)
+        .then(response => {
+          console.log("报名加一成功", response);
+        })
+        .catch(response => {
+          console.log("error：", response);
+        });
+    },
     /**
      * 报名
      */
@@ -307,7 +318,7 @@ export default {
           let resp = response.data;
           if (resp.success) {
             _this.memberCourse = resp.content;
-
+            _this.jiayi();
             // 这里面加个弹出框
             Toast.success("报名成功！");
           } else {
