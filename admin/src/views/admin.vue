@@ -522,14 +522,14 @@
 
                 <b class="arrow"></b>
               </li>
-              <li v-show="hasResource('0302')" class id="file-anlyse-sidebar">
+              <!-- <li v-show="hasResource('0302')" class id="file-anlyse-sidebar">
                 <router-link to="/file/anlyse">
                   <i class="menu-icon fa fa-caret-right"></i>
                   文件分析
                 </router-link>
 
                 <b class="arrow"></b>
-              </li>
+              </li> -->
             </ul>
           </li>
         </ul>

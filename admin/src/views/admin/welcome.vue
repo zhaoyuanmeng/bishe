@@ -59,7 +59,7 @@
 
         <div class="row">
           <div class="space-6"></div>
-
+          <!-- 
           <div class="col-sm-7 infobox-container">
             <div class="infobox infobox-green">
               <div class="infobox-icon">
@@ -145,7 +145,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
 
           <div class="vspace-12-sm"></div>
 
@@ -156,7 +156,7 @@
                   <i class="ace-icon fa fa-signal"></i>
                   分类播放排名
                 </h5>
-
+                <!-- 
                 <div class="widget-toolbar no-border">
                   <div class="inline dropdown-hover">
                     <button class="btn btn-minier btn-primary">
@@ -196,7 +196,7 @@
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div>-->
               </div>
 
               <div class="widget-body">
@@ -205,7 +205,7 @@
 
                   <div class="hr hr8 hr-double"></div>
 
-                  <div class="clearfix">
+                  <!-- <div class="clearfix">
                     <div class="grid3">
                       <span class="grey">
                         <i class="ace-icon fa fa-facebook-square fa-2x blue"></i>
@@ -229,7 +229,7 @@
                       </span>
                       <h4 class="bigger pull-right">1,050</h4>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
                 <!-- /.widget-main -->
               </div>
@@ -303,7 +303,7 @@
               <div class="widget-header widget-header-flat">
                 <h4 class="widget-title lighter">
                   <i class="ace-icon fa fa-signal"></i>
-                  播放量
+                  报名分析图
                 </h4>
 
                 <div class="widget-toolbar">
@@ -346,55 +346,90 @@ export default {
   mounted: function() {
     // sidebar激活样式方法一
     // this.$parent.activeSidebar("welcome-sidebar");
-    this.drawSaleChart();
+
     this.drawZhuChart();
     this.list(1);
+    this.listOrder(1);
+    this.drawSaleChart();
   },
   data() {
     return {
-      courses: []
+      courses: [],
+      orders: [], //订单列表
+      arr1: [] //存放报名时间
     };
   },
   methods: {
-    // 播放量的图表
+    // 报名量的图表
     drawSaleChart() {
-      // 生成随机数据
-      let d1 = [];
-      for (let i = 0; i < 30; i++) {
-        d1.push([i + 1, 10 + Math.floor(Math.random() * 100 + 1)]);
-      }
-      let d2 = [];
-      for (let i = 0; i < 30; i++) {
-        d2.push([i + 1, 10 + Math.floor(Math.random() * 100 + 1)]);
-      }
-      let sales_charts = $("#sales-charts").css({
-        width: "100%",
-        height: "220px"
-      });
-      $.plot(
-        "#sales-charts",
-        [
-          { label: "过去一月", data: d1 },
-          { label: "现在这月", data: d2 }
-        ],
-        {
-          hoverable: true,
-          shadowSize: 0,
-          series: {
-            lines: { show: true },
-            points: { show: true }
-          },
-          xaxis: {
-            tickLength: 0
-          },
-          yaxis: {},
-          grid: {
-            backgroundColor: { colors: ["#fff", "#fff"] },
-            borderWidth: 1,
-            borderColor: "#555"
+      let _this = this;
+      Loading.show();
+      _this.$ajax
+        .post(
+          process.env.VUE_APP_SERVER + "/business/admin/memberCourse/lista",
+          {
+            page: 1,
+            size: 100
           }
-        }
-      );
+        )
+        .then(response => {
+          Loading.hide();
+          let resp = response.data;
+          _this.orders = resp.content.list;
+          console.log("报名情况", this.arr1);
+          let arr2 = [];
+          let count = 0;
+          for (let index = 1; index <= 30; index++) {
+            count = 0;
+            for (let i = 0; i < this.orders.length; i++) {
+              console.log("报名情况1", this.arr1[i] == index.toString());
+              if (this.arr1[i] == index.toString()) {
+                count++;
+              }
+              // this.arr1[i] = this.orders[i].at.substring(8, 10);
+              // console.log("zifu" + this.orders[i].at.substring(8, 10));
+            }
+            arr2[index] = count;
+          }
+          console.log("数据", arr2);
+          // 生成随机数据;
+          let d1 = [];
+          for (let i = 0; i < 30; i++) {
+            d1.push([i + 1, `${arr2[i + 1]}`]);
+          }
+          let d2 = [];
+          for (let i = 0; i < 30; i++) {
+            d2.push([i + 1, 10 + Math.floor(Math.random() * 100 + 1)]);
+          }
+          let sales_charts = $("#sales-charts").css({
+            width: "100%",
+            height: "220px"
+          });
+          $.plot(
+            "#sales-charts",
+            [
+              { label: "过去一月", data: d1 },
+              { label: "现在这月", data: d1 }
+            ],
+            {
+              hoverable: true,
+              shadowSize: 0,
+              series: {
+                lines: { show: true },
+                points: { show: true }
+              },
+              xaxis: {
+                tickLength: 0
+              },
+              yaxis: {},
+              grid: {
+                backgroundColor: { colors: ["#fff", "#fff"] },
+                borderWidth: 1,
+                borderColor: "#555"
+              }
+            }
+          );
+        });
     },
     // 柱状图的图表
     drawZhuChart() {
@@ -403,11 +438,12 @@ export default {
         "min-height": "150px"
       });
       let data = [
-        { label: "java", data: 38.7, color: "#68BC31" },
-        { label: "php", data: 24.5, color: "#2091CF" },
-        { label: "go", data: 8.2, color: "#AF4E96" },
-        { label: "javascript", data: 18.6, color: "#DA5430" },
-        { label: "linux", data: 10, color: "#FEE074" }
+        { label: "前端技术", data: 38.7, color: "#68BC31" },
+        { label: "后端技术", data: 24.5, color: "#2091CF" },
+        { label: "移动开发", data: 8.2, color: "#AF4E96" },
+        { label: "云计算&大数据", data: 10, color: "#DA5430" },
+        { label: "数据库", data: 8.6, color: "#DA5430" },
+        { label: "运维&测试", data: 10, color: "#FEE074" }
       ];
       $.plot(placeholder, data, {
         series: {
@@ -488,6 +524,30 @@ export default {
         return (a.enroll - b.enroll) * -1; //时间正序  return的值  *-1 则为倒序
       });
       console.log("课程排行帮", this.courses);
+    },
+    // 报名的列表
+
+    listOrder(page) {
+      let _this = this;
+      Loading.show();
+      _this.$ajax
+        .post(
+          process.env.VUE_APP_SERVER + "/business/admin/memberCourse/lista",
+          {
+            page: page,
+            size: 100
+          }
+        )
+        .then(response => {
+          Loading.hide();
+          let resp = response.data;
+          _this.orders = resp.content.list;
+          console.log("报名情况", _this.orders);
+          for (let i = 0; i < this.orders.length; i++) {
+            this.arr1[i] = this.orders[i].at.substring(8, 10);
+            console.log("zifu" + this.orders[i].at.substring(8, 10));
+          }
+        });
     }
   }
 };
